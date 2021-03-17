@@ -1,8 +1,11 @@
+
 c = 0
 def color(c):
+    print('Допустимые цвета заливки:')
+    print('красный','синий','зеленый','оранжевый','пурпурный','розовый',sep='\n')
     while True:
-        c = input('Пожалуйста, введите цвет: ')
-        if c == 'зеленый':
+        c = input('Пожалуйста, введите цвет: ').strip().lower()
+        if c == 'зеленый' or c == 'зелёный':
             c = 'green'
             return c
         elif c == 'красный':
@@ -42,4 +45,18 @@ def correct_quantity(n):
                 print('Оно должно быть от 4 до 20.', end=' ')
                 n = input('Пожалуйста, повторите попытку: ')
                 continue
+
+        else:
+            print('Оно должно быть от 4 до 20.', end=' ')
+            n = input('Пожалуйста, повторите попытку: ')
+            continue
+
 print(correct_quantity(n))
+
+def d(n):
+    d=500/(2*n+1)
+    return d
+
+def s(d):
+    s=d*2/(3**0.5)
+    return s
