@@ -1,19 +1,21 @@
 import turtle
 
+
 def main():
     colors()
-    c1=color()
-    c2=color()
-    print(c1,c2)
-    quantity=correct_quantity()
-    dd=d(quantity)
-    ss=s(dd)
-    draw(c1, c2, dd, ss, quantity)
+    c1 = color()
+    c2 = color()
+    print(c1, c2)
+    quantity = correct_quantity()
+    d = diameter(quantity)
+    s = side(d)
+    draw(c1, c2, d, s, quantity)
 
 
 def colors():
     print('Допустимые цвета заливки:')
     print('красный', 'синий', 'зеленый', 'оранжевый', 'пурпурный', 'розовый', sep='\n')
+
 
 def color():
     while True:
@@ -43,12 +45,13 @@ def color():
             print(c, 'не является верным значением.', end=' ')
             continue
 
+
 def correct_quantity():
     n = input('Пожалуйста, введите количество шестиугольников, располагаемых в ряд: ')
     while True:
-        if n.isdigit() == True:
+        if n.isdigit():
             n = int(n)
-            if n > 3 and n < 21:
+            if 3 < n < 21:
                 quantity = n
                 return quantity
             else:
@@ -61,12 +64,12 @@ def correct_quantity():
             continue
 
 
-def d(n):
+def diameter(n):
     d = 500 / (2 * n + 1)
     return d
 
 
-def s(d):
+def side(d):
     s = d * 2 / (3 ** 0.5)
     return s
 
@@ -93,26 +96,25 @@ def draw_hexagon(x, y, d, s, col):
 def draw(c1, c2, d, s, n):
     turtle.speed(100)
     o = 0
-    p = 0
     i = 0
     y = 250 - s
-    for repy in range(n):
+    for rep_y in range(n):
         x = -250
         if i == 0:
-            for repx in range(n):
+            for rep_x in range(n):
                 x = x + 2 * d
                 if o % 2 == 0:
                     col = c1
                     o += 1
                 else:
                     col = c2
-                    o +=1
+                    o += 1
                 draw_hexagon(x, y, d, s, col)
             i = 1
             o += 1
         else:
             x = x - d
-            for repx in range(n):
+            for rep_x in range(n):
                 x = x + 2 * d
                 if o % 2 == 0:
                     col = c1
@@ -123,6 +125,7 @@ def draw(c1, c2, d, s, n):
                 draw_hexagon(x, y, d, s, col)
             i = 0
         y = y - s - s / 2
+
 
 main()
 turtle.done()
