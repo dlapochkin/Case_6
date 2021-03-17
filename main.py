@@ -1,11 +1,24 @@
+import turtle
 
-c = 0
-def color(c):
+def main():
+    colors()
+    c1=color()
+    c2=color()
+    print(c1,c2)
+    quantity=correct_quantity()
+    dd=d(quantity)
+    ss=s(dd)
+    draw(c1, c2, dd, ss, quantity)
+
+
+def colors():
     print('Допустимые цвета заливки:')
-    print('красный','синий','зеленый','оранжевый','пурпурный','розовый',sep='\n')
+    print('красный', 'синий', 'зеленый', 'оранжевый', 'пурпурный', 'розовый', sep='\n')
+
+def color():
     while True:
         c = input('Пожалуйста, введите цвет: ').strip().lower()
-        if c == 'зеленый' or c == 'зелёный':
+        if c == 'зеленый':
             c = 'green'
             return c
         elif c == 'красный':
@@ -27,14 +40,11 @@ def color(c):
             c = 'pink'
             return c
         else:
-            print(c, 'не является верным значением.',end = ' ')
+            print(c, 'не является верным значением.', end=' ')
             continue
-print(color(c))
 
-n = 0
-quantity = 0
-n = input('Пожалуйста, введите количество шестиугольников, располагаемых в ряд: ')
-def correct_quantity(n):
+def correct_quantity():
+    n = input('Пожалуйста, введите количество шестиугольников, располагаемых в ряд: ')
     while True:
         if n.isdigit() == True:
             n = int(n)
@@ -45,18 +55,74 @@ def correct_quantity(n):
                 print('Оно должно быть от 4 до 20.', end=' ')
                 n = input('Пожалуйста, повторите попытку: ')
                 continue
-
         else:
             print('Оно должно быть от 4 до 20.', end=' ')
             n = input('Пожалуйста, повторите попытку: ')
             continue
 
-print(correct_quantity(n))
 
 def d(n):
-    d=500/(2*n+1)
+    d = 500 / (2 * n + 1)
     return d
 
+
 def s(d):
-    s=d*2/(3**0.5)
+    s = d * 2 / (3 ** 0.5)
     return s
+
+
+def draw_hexagon(x, y, d, s, col):
+    turtle.up()
+    turtle.setposition(x, y)
+    turtle.left(90)
+    turtle.forward(d)
+    turtle.left(120)
+    turtle.color('black', col)
+    turtle.down()
+    turtle.begin_fill()
+    for repeat in range(6):
+        turtle.forward(s)
+        turtle.left(60)
+    turtle.end_fill()
+    turtle.penup()
+    turtle.left(60)
+    turtle.forward(s)
+    turtle.left(90)
+
+
+def draw(c1, c2, d, s, n):
+    turtle.speed(100)
+    o = 0
+    p = 0
+    i = 0
+    y = 250 - s
+    for repy in range(n):
+        x = -250
+        if i == 0:
+            for repx in range(n):
+                x = x + 2 * d
+                if o % 2 == 0:
+                    col = c1
+                    o += 1
+                else:
+                    col = c2
+                    o +=1
+                draw_hexagon(x, y, d, s, col)
+            i = 1
+            o += 1
+        else:
+            x = x - d
+            for repx in range(n):
+                x = x + 2 * d
+                if o % 2 == 0:
+                    col = c1
+                    o += 1
+                else:
+                    col = c2
+                    o += 1
+                draw_hexagon(x, y, d, s, col)
+            i = 0
+        y = y - s - s / 2
+
+main()
+turtle.done()
