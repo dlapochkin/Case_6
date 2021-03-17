@@ -1,7 +1,7 @@
 """Case-study Тесселяция
 Разработчики:
-Кривошапова Д.Е
-Лапочкин Д.А
+Кривошапова Д.Е.
+Лапочкин Д.А. 40%
 Кузнецов А.Д.
 """
 import turtle
@@ -10,7 +10,7 @@ import turtle
 def main():
     """
     THE MAIN FUNCTION
-    :return:None
+    :return: None
     """
     colors()
     c1 = color()
@@ -24,7 +24,7 @@ def main():
 def colors():
     """
     COLOR MENU
-    :return:None
+    :return: None
     """
     print('Допустимые цвета заливки:')
     print('красный', 'синий', 'зеленый', 'оранжевый', 'пурпурный', 'розовый', sep='\n')
